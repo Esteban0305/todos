@@ -6,6 +6,18 @@ Aplicación PWA para la organización de tareas. La aplicación permite crear, e
 
 Otra características principal es que permite ver un resumen o reporte de tus tareas por semana o mes, se ve el progreso y se descarga el reporte en JSON.
 
+## Integrantes
+
+- Esteban Antonio Muñoz de la Cruz.
+- Moises Alejandro Grimaldo Garcia.
+- Tomas David Ortiz Sánchez.
+- Alejandro Zahid Rodriguez Calvario.
+- Ramón de Jesús Peregrino Larios.
+- Javier Alejandro Gonzalez Peredia.
+- Daniel Ramirez Chavez.
+- Luis Enrique Hernandez Valdivia.
+- César Julian Vergara Calvario
+
 ## Tecnologías
 
 La aplicación está construida con Next.js, utiliza Zustand para la gestión del estado, y emplea componentes de shadcn/ui para una interfaz moderna y accesible.
