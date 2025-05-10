@@ -8,7 +8,7 @@ const APP_SHELL = [
   "/reports",
   "/manifest.json",
   "/favicon.ico",
-  "/public/icon-72x72.png",
+  "https://cdn-icons-png.flaticon.com/512/747/747095.png",
   "/public/icon-96x96.png",
   "/icon-128x128.png",
   "/icon-144x144.png",
