@@ -7,10 +7,23 @@ const APP_SHELL = [
   "/",
   "/reports",
   "/manifest.json",
-  "/icon-192.png",
-  "/icon-512.png",
+  "/favicon.ico",
+  "/icon-72x72.png",
+  "/icon-96x96.png",
+  "/icon-128x128.png",
+  "/icon-144x144.png",
+  "/icon-152x152.png",
+  "/icon-192x192.png",
+  "/icon-384x384.png",
+  "/icon-512x512.png",
+  "/maskable-icon.png",
+  "/apple-touch-icon.png",
   "/screenshot1.png",
   "/screenshot2.png",
+  "/browserconfig.xml",
+  "/robots.txt",
+  "/sitemap.xml",
+  "/offline.html",
 ]
 
 // Install event - cache the app shell
@@ -22,6 +35,8 @@ self.addEventListener("install", (event) => {
       return cache.addAll(APP_SHELL)
     }),
   )
+  // Activate immediately
+  self.skipWaiting()
 })
 
 // Activate event - clean up old caches
@@ -45,8 +60,6 @@ self.addEventListener("activate", (event) => {
 
 // Fetch event - serve from cache, fallback to network
 self.addEventListener("fetch", (event) => {
-  console.log("[ServiceWorker] Fetch", event.request.url)
-
   // Skip cross-origin requests
   if (!event.request.url.startsWith(self.location.origin)) {
     return
@@ -67,7 +80,7 @@ self.addEventListener("fetch", (event) => {
         .catch(() => {
           // If network fails, try to serve from cache
           return caches.match(event.request).then((cachedResponse) => {
-            return cachedResponse || caches.match("/")
+            return cachedResponse || caches.match("/offline.html")
           })
         }),
     )
@@ -98,10 +111,12 @@ self.addEventListener("fetch", (event) => {
         })
         .catch((error) => {
           console.log("[ServiceWorker] Fetch failed:", error)
+
           // For image requests, return a fallback image
-          if (event.request.url.match(/\.(jpg|jpeg|png|gif|svg)$/)) {
-            return caches.match("/icon-192.png")
+          if (event.request.url.match(/\.(jpg|jpeg|png|gif|svg|webp)$/)) {
+            return caches.match("/icon-192x192.png")
           }
+
           // For other requests, just propagate the error
           throw error
         })
