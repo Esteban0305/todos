@@ -10,7 +10,7 @@
   "categories": ["productivity", "utilities"],
   "icons": [
     {
-      "src": "/icon-72x72.png",
+      "src": "https://cdn-icons-png.flaticon.com/512/747/747095.png",
       "sizes": "72x72",
       "type": "image/png",
       "purpose": "any"
