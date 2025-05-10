@@ -1,30 +1,94 @@
-# To-do list PWA
+# App gestión de tareas
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+Prototipo: https://v0-to-do-list-pwa-esteban0305s-projects.vercel.app/
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/esteban0305s-projects/v0-to-do-list-pwa)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/9x8sZHt0OuK)
+Aplicación PWA para la organización de tareas. La aplicación permite crear, editar, eliminar y marcar tareas como completadas. Cada tarea almacena el título, descripción, fecha límite y si son recurrentes o no. Además las tareas se listan en pendientes y completadas ordenadas por fecha límite.
 
-## Overview
+Otra características principal es que permite ver un resumen o reporte de tus tareas por semana o mes, se ve el progreso y se descarga el reporte en JSON.
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+## Tecnologías
 
-## Deployment
+La aplicación está construida con Next.js, utiliza Zustand para la gestión del estado, y emplea componentes de shadcn/ui para una interfaz moderna y accesible.
 
-Your project is live at:
+## Instrucciones para compilar, desplegar y ejecutar la aplicación
 
-**[https://vercel.com/esteban0305s-projects/v0-to-do-list-pwa](https://vercel.com/esteban0305s-projects/v0-to-do-list-pwa)**
+### Requisitos previos
 
-## Build your app
+- Node.js (versión 18.0.0 o superior)
+- npm (incluido con Node.js) o yarn
+- Un editor de código como Visual Studio Code
 
-Continue building your app on:
 
-**[https://v0.dev/chat/projects/9x8sZHt0OuK](https://v0.dev/chat/projects/9x8sZHt0OuK)**
+### Ejecutar la aplicación en local
 
-## How It Works
+1. **Clonar o descargar el código fuente**
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+Si tienes el código en un repositorio Git:
+
+```shellscript
+git clone <url-del-repositorio>
+cd task-management-pwa
+```
+
+
+2. **Instalar dependencias**
+
+```shellscript
+npm install
+# o si usas yarn
+yarn install
+```
+
+
+3. **Ejecutar en modo desarrollo**
+
+```shellscript
+npm run dev
+# o si usas yarn
+yarn dev
+```
+
+Esto iniciará el servidor de desarrollo en `http://localhost:3000`
+
+
+4. **Compilar para producción**
+
+```shellscript
+npm run build
+# o si usas yarn
+yarn build
+```
+
+
+5. **Iniciar la versión compilada**
+
+```shellscript
+npm run start
+# o si usas yarn
+yarn start
+```
+
+## Instrucciones para "Agregar a pantalla de inicio"
+
+### En dispositivos Android (Chrome)
+
+1. Abre la aplicación en Chrome
+2. Toca el menú de tres puntos (⋮) en la esquina superior derecha
+3. Selecciona "Añadir a pantalla de inicio" o "Instalar aplicación"
+4. Sigue las instrucciones en pantalla para completar la instalación
+
+
+### En dispositivos iOS (Safari)
+
+1. Abre la aplicación en Safari
+2. Toca el botón de compartir (cuadrado con flecha hacia arriba)
+3. Desplázate hacia abajo y selecciona "Añadir a la pantalla de inicio"
+4. Toca "Añadir" en la esquina superior derecha
+
+
+### En ordenadores de escritorio (Chrome, Edge, etc.)
+
+1. Abre la aplicación en el navegador
+2. Busca el icono de instalación en la barra de direcciones (generalmente un signo "+" o un icono de descarga)
+3. Haz clic en él y selecciona "Instalar"
+4. También puedes hacer clic en el menú de tres puntos (⋮) y seleccionar "Instalar [nombre de la aplicación]"
