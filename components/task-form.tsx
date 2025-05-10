@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useTaskStore } from "@/lib/task-store"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -70,7 +70,7 @@ export default function TaskForm() {
   }
 
   // Populate form when a task is selected for editing
-  useState(() => {
+  useEffect(() => {
     if (selectedTask) {
       setTitle(selectedTask.title)
       setDescription(selectedTask.description)
@@ -81,7 +81,7 @@ export default function TaskForm() {
         setRecurrenceCount(selectedTask.recurrence.count)
       }
     }
-  })
+  }, [selectedTask])
 
   return (
     <Card>
