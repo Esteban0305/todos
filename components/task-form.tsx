@@ -68,6 +68,22 @@ export default function TaskForm() {
     }
   }
 
+  // Handle recurrence count change
+  const handleRecurrenceCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+
+    // Allow empty string to clear the input
+    if (value === "") {
+      setRecurrenceCount(0)
+      return
+    }
+
+    const parsedValue = Number.parseInt(value, 10)
+    if (!isNaN(parsedValue)) {
+      setRecurrenceCount(parsedValue)
+    }
+  }
+
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -75,6 +91,9 @@ export default function TaskForm() {
     if (!validateDate(dueDate)) {
       return
     }
+
+    // Ensure recurrenceCount is at least 1 before submitting
+    const finalRecurrenceCount = recurrenceCount < 1 ? 1 : recurrenceCount
 
     const taskData: Omit<Task, "id" | "completed" | "createdAt"> = {
       title,
@@ -84,7 +103,7 @@ export default function TaskForm() {
       recurrence: isRecurring
         ? {
             type: recurrenceType,
-            count: recurrenceCount,
+            count: finalRecurrenceCount,
           }
         : null,
       category,
@@ -167,7 +186,7 @@ export default function TaskForm() {
               </SelectTrigger>
               <SelectContent className="rounded-md bg-white">
                 {categories.map((cat) => (
-                  <SelectItem key={cat.id} value={cat.id}>
+                  <SelectItem key={cat.id} value={cat.id} className="text-slate-900">
                     <div className="flex items-center">
                       <Badge className="mr-2 h-2 w-2 rounded-full p-1" style={{ backgroundColor: cat.color }} />
                       {cat.name}
@@ -240,9 +259,15 @@ export default function TaskForm() {
                     <SelectValue placeholder="Seleccionar frecuencia" className="text-slate-900" />
                   </SelectTrigger>
                   <SelectContent className="rounded-md bg-white">
-                    <SelectItem value="daily">Diaria</SelectItem>
-                    <SelectItem value="weekly">Semanal</SelectItem>
-                    <SelectItem value="monthly">Mensual</SelectItem>
+                    <SelectItem value="daily" className="text-slate-900">
+                      Diaria
+                    </SelectItem>
+                    <SelectItem value="weekly" className="text-slate-900">
+                      Semanal
+                    </SelectItem>
+                    <SelectItem value="monthly" className="text-slate-900">
+                      Mensual
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -254,9 +279,13 @@ export default function TaskForm() {
                 <Input
                   id="recurrenceCount"
                   type="number"
-                  min={1}
-                  value={recurrenceCount}
-                  onChange={(e) => setRecurrenceCount(Number.parseInt(e.target.value) || 1)}
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  value={recurrenceCount === 0 ? "" : recurrenceCount}
+                  onChange={handleRecurrenceCountChange}
+                  onBlur={() => {
+                    if (recurrenceCount < 1) setRecurrenceCount(1)
+                  }}
                   className="rounded-md border-slate-300 focus:border-primary-600 focus:ring-primary-600 bg-white text-slate-900"
                 />
               </div>

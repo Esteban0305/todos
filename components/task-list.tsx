@@ -126,12 +126,14 @@ export default function TaskList({ filter }: TaskListProps) {
           </Label>
           <Select value={categoryFilter} onValueChange={setCategoryFilter}>
             <SelectTrigger id="categoryFilter" className="w-[180px] bg-white text-slate-900 border-slate-300">
-              <SelectValue placeholder="Todas las categorías" />
+              <SelectValue placeholder="Todas las categorías" className="text-slate-900" />
             </SelectTrigger>
             <SelectContent className="bg-white">
-              <SelectItem value="all">Todas las categorías</SelectItem>
+              <SelectItem value="all" className="text-slate-900">
+                Todas las categorías
+              </SelectItem>
               {categories.map((category) => (
-                <SelectItem key={category.id} value={category.id}>
+                <SelectItem key={category.id} value={category.id} className="text-slate-900">
                   <div className="flex items-center">
                     <Badge className="mr-2 h-2 w-2 rounded-full p-1" style={{ backgroundColor: category.color }} />
                     {category.name}
@@ -174,7 +176,12 @@ export default function TaskList({ filter }: TaskListProps) {
                       className="mt-1 rounded-full border-2 border-slate-400 data-[state=checked]:border-primary data-[state=checked]:bg-primary"
                     />
                     <div>
-                      <CardTitle className={cn("text-lg font-medium", task.completed && "line-through text-slate-500")}>
+                      <CardTitle
+                        className={cn(
+                          "text-lg font-medium text-slate-900",
+                          task.completed && "line-through text-slate-500",
+                        )}
+                      >
                         {task.title}
                       </CardTitle>
                       {task.description && (
@@ -266,7 +273,11 @@ export default function TaskList({ filter }: TaskListProps) {
             >
               Cancelar
             </Button>
-            <Button variant="destructive" onClick={confirmDelete} className="rounded-full bg-red-600 hover:bg-red-700">
+            <Button
+              variant="destructive"
+              onClick={confirmDelete}
+              className="rounded-full bg-red-600 hover:bg-red-700 text-white"
+            >
               Eliminar
             </Button>
           </DialogFooter>
