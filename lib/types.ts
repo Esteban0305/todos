@@ -10,4 +10,11 @@ export interface Task {
     type: "daily" | "weekly" | "monthly"
     count: number
   } | null
+  category: string
+}
+
+export interface Category {
+  id: string
+  name: string
+  color: string
 }
