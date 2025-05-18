@@ -5,7 +5,6 @@ import { MainNav } from "@/components/main-nav"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useTaskStore } from "@/lib/task-store"
-import { Button } from "@/components/ui/button"
 import { Calendar, FileText } from "lucide-react"
 import { format, startOfWeek, endOfWeek, startOfMonth, endOfMonth, isWithinInterval } from "date-fns"
 import { es } from "date-fns/locale"
@@ -21,6 +20,8 @@ const PDFExporter = dynamic(() => import("@/components/pdf-exporter"), {
     </Button>
   ),
 })
+
+import { Button } from "@/components/ui/button"
 
 export default function ReportsPage() {
   const { tasks } = useTaskStore()
@@ -48,7 +49,7 @@ export default function ReportsPage() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <MainNav />
-      <div className="flex-1 container py-6 md:py-8">
+      <div className="flex-1 container py-6 md:py-8 pb-20 md:pb-8">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-medium text-slate-900">Reportes y Estadísticas</h1>
           <Tabs

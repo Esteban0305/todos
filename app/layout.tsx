@@ -4,6 +4,7 @@ import { Roboto } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { PWAInstallPrompt } from "@/components/pwa-install-prompt"
+import { Toaster } from "@/components/ui/toaster"
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -70,6 +71,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
           <PWAInstallPrompt />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

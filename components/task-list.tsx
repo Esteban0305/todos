@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/dialog"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
+import { useToast } from "@/hooks/use-toast"
 
 interface TaskListProps {
   filter: "pending" | "completed"
@@ -30,6 +31,7 @@ export default function TaskList({ filter }: TaskListProps) {
   const { tasks, categories, toggleTaskCompletion, deleteTask, setSelectedTask } = useTaskStore()
   const [taskToDelete, setTaskToDelete] = useState<string | null>(null)
   const [categoryFilter, setCategoryFilter] = useState<string>("all")
+  const { toast } = useToast()
 
   // Filter tasks based on completion status and category
   const filteredTasks = tasks.filter((task) => {
@@ -96,6 +98,20 @@ export default function TaskList({ filter }: TaskListProps) {
   const getCategoryName = (categoryId: string) => {
     const category = categories.find((c) => c.id === categoryId)
     return category?.name || "General"
+  }
+
+  // Handle task completion toggle
+  const handleTaskCompletion = (taskId: string) => {
+    const task = tasks.find((t) => t.id === taskId)
+    toggleTaskCompletion(taskId)
+
+    if (task && !task.completed) {
+      toast({
+        variant: "success",
+        title: "¡Tarea completada!",
+        description: `Has completado la tarea: ${task.title}`,
+      })
+    }
   }
 
   // Handle delete confirmation
@@ -172,7 +188,7 @@ export default function TaskList({ filter }: TaskListProps) {
                   <div className="flex items-start gap-3">
                     <Checkbox
                       checked={task.completed}
-                      onCheckedChange={() => toggleTaskCompletion(task.id)}
+                      onCheckedChange={() => handleTaskCompletion(task.id)}
                       className="mt-1 rounded-full border-2 border-slate-400 data-[state=checked]:border-primary data-[state=checked]:bg-primary"
                     />
                     <div>

@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col bg-white">
       <MainNav />
-      <div className="flex-1 container py-6 md:py-8">
+      <div className="flex-1 container py-6 md:py-8 pb-20 md:pb-8">
         <div className="flex flex-col md:flex-row gap-6">
           <div className="md:w-1/3">
             <TaskForm />
